@@ -21,6 +21,19 @@ const App = () => {
   const [characterNFT, setCharacterNFT] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const checkNetwork = async(ethereum) => {
+    let chainId = await ethereum.request({ method: 'eth_chainId' })
+    if (chainId !== '0x4'){
+      window.alert("This Dapp works on Rinkeby Network Only. Please Approve to switch to Rinkeby");
+      await ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId:'0x4' }],
+      }).catch(e => window.location.reload());
+    }
+    console.log(chainId);
+    
+  }
+
 
 
   // Actions
@@ -34,7 +47,7 @@ const App = () => {
       } else {
         console.log('We have the ethereum object', ethereum);
       }
-
+      //checkNetwork(ethereum);
       const accounts = await ethereum.request({ method: 'eth_accounts' });
 
       if (accounts.length !== 0) {
@@ -60,11 +73,12 @@ const App = () => {
         alert('Get MetaMask!');
         return;
       }
+      await checkNetwork(ethereum);
 
       /*
        * Fancy method to request access to account.
        */
-      const accounts = await ethereum.request({
+      const accounts = await window.ethereum.request({
         method: 'eth_requestAccounts',
       });
 

@@ -24,7 +24,7 @@
 }
 
 .character-item img {
-  height: 300px;
+  height: 550px;
   width: 350px;
   border-radius: 10px;
   object-fit: cover;
@@ -52,10 +52,16 @@
   border-bottom-right-radius: 10px;
   border: none;
   cursor: pointer;
-  background-color: rgb(32, 129, 226);
+  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
   color: white;
   font-weight: bold;
   font-size: 16px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.character-item:hover {
+  background-position: right center; /* change the direction of the change here */
 }
 
 

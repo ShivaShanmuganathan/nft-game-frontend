@@ -68,10 +68,12 @@ const SelectCharacter = ({ setCharacterNFT }) => {
      */
     if (gameContract) {
       const characterNFT = await gameContract.checkIfUserHasNFT();
+      console.log('Contract Address:', gameContract);
       console.log('CharacterNFT: ', characterNFT);
       setCharacterNFT(transformCharacterData(characterNFT));
-      alert(`Your NFT is all done -- see it here: https://testnets.opensea.io/assets/${gameContract}/${tokenId.toNumber()}`);
-
+      let url_link = `https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId}`
+      alert(`Your Hero Is Now On OpenSea-> ${url_link}`);
+      
     }
   };
 
@@ -100,7 +102,9 @@ const SelectCharacter = ({ setCharacterNFT }) => {
         <div className="name-container">
           <p>{character.name}</p>
         </div>
-        <img src={character.imageURI} alt={character.name} />
+        
+
+        <img src={`https://cloudflare-ipfs.com/ipfs/${character.imageURI}`} alt={character.name} />
         <button
           type="button"
           className="character-mint-button"
@@ -110,11 +114,32 @@ const SelectCharacter = ({ setCharacterNFT }) => {
   ));
 
   const mintCharacterNFTAction = (characterId) => async () => {
+
+    let overrides = {
+
+      // The maximum units of gas for the transaction to use
+      gasLimit: 3000000,
+                
+  
+      // The price (in wei) per unit of gas
+      //gasPrice: utils.parseUnits('9.0', 'gwei'),
+  
+      // The nonce to use in the transaction
+      nonce: 234,
+  
+      // The amount to send with the transaction (i.e. msg.value)
+      value: ethers.utils.parseEther('0.1'),
+  
+      // The chain ID (or network ID) to use
+      //chainId: 4
+  
+    };
+  
   try {
     if (gameContract) {
       setMintingCharacter(true);
       console.log('Minting character in progress...');
-      const mintTxn = await gameContract.mintCharacterNFT(characterId);
+      const mintTxn = await gameContract.mintCharacterNFT(characterId,overrides);
       await mintTxn.wait();
       console.log('mintTxn:', mintTxn);
       setMintingCharacter(false);

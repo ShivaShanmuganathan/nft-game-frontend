@@ -96,7 +96,7 @@
   max-height: 80%;
   padding: 10px;
   border-radius: 10px;
-  background-color: gray;
+  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
 }
 
 .player .image-content img {
@@ -212,10 +212,10 @@
 /* Toast */
 #toast {
   visibility: hidden;
-  max-width: 500px;
+  max-width: 1000px;
   height: 90px;
   margin: auto;
-  background-color: gray;
+  background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
   color: #fff;
   text-align: center;
   border-radius: 10px;
@@ -252,35 +252,6 @@
   font-size: 28px;
 }
 
-#toast {
-  visibility: hidden;
-  max-width: 500px;
-  height: 90px;
-  margin: auto;
-  background-color: gray;
-  color: #fff;
-  text-align: center;
-  border-radius: 10px;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  bottom: 30px;
-  font-size: 17px;
-  white-space: nowrap;
-}
-
-#toast #desc {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 28px;
-  font-weight: bold;
-  height: 90px;
-  overflow: hidden;
-  white-space: nowrap;
-}
 
 #toast.show {
   visibility: visible;
@@ -290,13 +261,20 @@
     fadeout 0.5s 4.5s;
 }
 
+#attack_complete{
+  background-color: #c4ffc4;
+  border: 1px solid #0fcf0f;
+  border-radius: 4px;
+  display: none;
+}
+
 @-webkit-keyframes fadein {
   from {
     bottom: 0;
     opacity: 0;
   }
   to {
-    bottom: 30px;
+    bottom: 10px;
     opacity: 1;
   }
 }
@@ -307,7 +285,7 @@
     opacity: 0;
   }
   to {
-    bottom: 30px;
+    bottom: 10px;
     opacity: 1;
   }
 }
