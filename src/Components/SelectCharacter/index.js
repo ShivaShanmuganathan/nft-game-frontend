@@ -67,10 +67,10 @@ const SelectCharacter = ({ setCharacterNFT }) => {
      * and set it in state to move onto the Arena
      */
     if (gameContract) {
-      const characterNFT = await gameContract.checkIfUserHasNFT();
+      const characterNFT = characters[characterIndex.toNumber()];
       console.log('Contract Address:', gameContract);
       console.log('CharacterNFT: ', characterNFT);
-      setCharacterNFT(transformCharacterData(characterNFT));
+      setCharacterNFT(characterNFT);
       let url_link = `https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId}`
       alert(`Your Hero Is Now On OpenSea-> ${url_link}`);
       

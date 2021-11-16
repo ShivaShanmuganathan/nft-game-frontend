@@ -68,9 +68,9 @@ const Arena = ({ characterNFT, setCharacterNFT }) => {
               return { ...prevState, hp: bossHp };
           });
 
-          // setCharacterNFT((prevState) => {
-          //     return { ...prevState, hp: playerHp };
-          // });
+          setCharacterNFT((prevState) => {
+              return { ...prevState, hp: playerHp };
+          });
       };
 
 
